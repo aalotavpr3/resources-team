@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Tajawal:wght@400;500;700&display=swap');
+
+:root{
+  --ink:#0B2545; --blue:#12559B; --royal:#2A4FA3; --sky:#4FB3CF; --mist:#F3F7FB;
+  --line:#D9E3EE; --red:#C8102E; --text:#1d2b3f; --muted:#5b6b80;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font-family:'Tajawal',sans-serif;color:var(--text);background:#fff;line-height:1.85;font-size:17px}
+h1,h2,h3,h4{font-family:'Cairo',sans-serif;color:var(--ink);line-height:1.4;margin:0 0 .5em}
+a{color:var(--blue);text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1180px,92%);margin-inline:auto}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.btn{display:inline-block;border:0;cursor:pointer;font:700 16px 'Cairo',sans-serif;padding:.6em 1.4em;border-radius:10px;background:var(--blue);color:#fff}
+.btn:hover{background:var(--ink)}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.danger{background:#b3261e}
+.btn.sm{font-size:14px;padding:.3em .9em}
+
+/* ---------- الترويسة ---------- */
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand-school img{height:74px;width:auto;border-radius:8px}
+.brand-team{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.brand-team img{height:52px;width:auto;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.brand-team span{font:800 19px 'Cairo',sans-serif;line-height:1.3}
+.brand-team small{display:block;font:500 13px 'Tajawal';color:var(--muted)}
+.nav{background:var(--ink);position:sticky;top:0;z-index:50}
+.navin{display:flex;align-items:center}
+.nav ul{list-style:none;display:flex;gap:4px;margin:0;padding:0}
+.nav a{display:block;color:#dbe7f5;font:700 16px 'Cairo';padding:12px 18px;border-bottom:3px solid transparent}
+.nav a:hover,.nav a.on{color:#fff;border-bottom-color:var(--sky);background:rgba(255,255,255,.06)}
+.burger{display:none;background:none;border:0;color:#fff;font:700 16px 'Cairo';padding:12px 0;cursor:pointer}
+
+/* ---------- الحافة المسننة (مستوحاة من علم البحرين) ---------- */
+.zig{height:14px;background-color:var(--red);
+  background-image:linear-gradient(135deg,#fff 25%,transparent 25%),linear-gradient(225deg,#fff 25%,transparent 25%);
+  background-size:20px 14px;background-position:0 0}
+
+/* ---------- الهيرو والسلايدر ---------- */
+.hero{background:linear-gradient(120deg,#26408f 0%,#2f6db0 55%,#4FB3CF 100%);padding-bottom:36px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto auto -180px -140px;width:520px;height:520px;border-radius:50%;
+  background:repeating-radial-gradient(circle,transparent 0 38px,rgba(255,255,255,.07) 38px 40px);pointer-events:none}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:26px 0 16px;position:relative}
+.tabs button{font:700 16px 'Cairo';cursor:pointer;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;padding:.4em 1.3em;border-radius:99px}
+.tabs button[aria-selected=true]{background:#fff;color:var(--ink);border-color:#fff}
+.slider{position:relative;border-radius:18px;overflow:hidden;min-height:340px;background:var(--ink);box-shadow:0 20px 40px -20px rgba(0,0,0,.45)}
+.slide{position:absolute;inset:0;display:flex;align-items:flex-end;padding:42px 84px 58px;background-size:cover;background-position:center;
+  background-color:#1b3a7a;opacity:0;visibility:hidden;transition:opacity .6s}
+.slide.active{opacity:1;visibility:visible;position:relative;min-height:340px}
+.slide .txt{max-width:640px;color:#fff}
+.slide .tag{display:inline-block;background:var(--red);color:#fff;font:700 13px 'Cairo';padding:.1em .9em;border-radius:99px;margin-bottom:10px}
+.slide h2{color:#fff;font-size:clamp(24px,3.6vw,40px);margin-bottom:.3em}
+.slide p{margin:0 0 .6em;color:#e6eef8}
+.slide time{font-size:14px;color:#bcd2ea}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:var(--ink);font-size:22px;cursor:pointer;z-index:3}
+.arrow.prev{right:14px}.arrow.next{left:14px}
+.dots{position:absolute;bottom:18px;inset-inline:0;display:flex;gap:8px;justify-content:center;z-index:3}
+.dots button{width:11px;height:11px;border-radius:50%;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0}
+.dots button[aria-current=true]{background:#fff;width:30px;border-radius:6px}
+.empty{color:#fff;padding:60px 30px;text-align:center}
+
+/* ---------- الأقسام ---------- */
+.sec{padding:64px 0}
+.sec.alt{background:var(--mist)}
+.sec-title{font-size:30px;margin-bottom:28px;padding-inline-start:16px;border-inline-start:5px solid var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.ncard{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:start;padding:0;font:inherit;display:flex;flex-direction:column}
+.ncard:hover{border-color:var(--blue)}
+.ncard .pic{height:150px;background:linear-gradient(120deg,#26408f,#4FB3CF);background-size:cover;background-position:center}
+.ncard .body{padding:16px 18px 20px}
+.ncard .cat{font:700 13px 'Cairo';color:var(--red)}
+.ncard h3{font-size:18px;margin:.2em 0}
+.ncard p{margin:0;color:var(--muted);font-size:15px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ncard time{font-size:13px;color:var(--muted)}
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.about p{font-size:18px;color:var(--text)}
+.about .logo-box{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;place-items:center}
+.about .logo-box img{height:120px;width:auto}
+dialog{border:0;border-radius:16px;padding:0;max-width:min(680px,94vw);width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(11,37,69,.6)}
+.dlg-in{padding:28px}
+.dlg-in .pic{height:220px;border-radius:12px;background:linear-gradient(120deg,#26408f,#4FB3CF);background-size:cover;background-position:center;margin-bottom:16px}
+
+/* ---------- فريقنا ---------- */
+.page-title{background:linear-gradient(120deg,#26408f,#2f6db0);color:#fff;padding:44px 0}
+.page-title h1{color:#fff;font-size:36px;margin:0}
+.page-title p{margin:.3em 0 0;color:#cfe0f4}
+.tree{display:flex;flex-direction:column;gap:0}
+.level{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;position:relative;padding-top:40px}
+.level:first-child{padding-top:0}
+.level:not(:first-child)::before{content:"";position:absolute;top:0;left:50%;width:2px;height:40px;background:var(--line)}
+.level-label{width:100%;text-align:center;font:700 14px 'Cairo';color:var(--muted);margin-bottom:-8px}
+.mcard{display:flex;flex-direction:column;align-items:center;text-align:center;width:210px;padding:22px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--r);color:var(--ink)}
+.mcard:hover{border-color:var(--blue);transform:translateY(-3px);transition:.2s}
+.mcard img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:4px solid var(--mist);margin-bottom:10px}
+.mcard b{font:800 17px 'Cairo'}
+.mcard span{color:var(--muted);font-size:15px}
+.mcard.leader{width:260px;border:2px solid var(--blue);background:linear-gradient(#fff,var(--mist))}
+.mcard.leader img{width:140px;height:140px;border-color:var(--blue)}
+.mcard.leader b{font-size:20px}
+.mcard.head,.mcard.deputy{width:230px;border-top:4px solid var(--red)}
+
+/* ---------- صفحة العضو ---------- */
+.profile{display:grid;grid-template-columns:1fr 340px;gap:32px;padding:46px 0 70px;align-items:start}
+.p-head{display:flex;gap:24px;align-items:center;margin-bottom:26px}
+.p-head img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:5px solid var(--mist)}
+.p-head h1{font-size:32px;margin:0}
+.badge{display:inline-block;background:var(--ink);color:#fff;font:700 14px 'Cairo';padding:.15em 1em;border-radius:99px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chips span{background:var(--mist);border:1px solid var(--line);color:var(--blue);font-weight:700;padding:.1em .9em;border-radius:99px;font-size:15px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.gallery button{padding:0;border:0;background:none;cursor:zoom-in;text-align:start}
+.gallery img{width:100%;height:150px;object-fit:cover;border-radius:10px}
+.gallery small{color:var(--muted)}
+.idcard{background:linear-gradient(150deg,#1f3a85,#2f6db0 60%,#4FB3CF);color:#fff;border-radius:18px;padding:22px;text-align:center;position:sticky;top:80px}
+.idcard .top{display:flex;align-items:center;justify-content:space-between;font:700 13px 'Cairo';margin-bottom:14px;text-align:start}
+.idcard .top img{height:34px;background:#fff;border-radius:8px;padding:4px 6px}
+.idcard .ph{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin:0 auto 8px}
+.idcard h3{color:#fff;margin:0;font-size:20px}
+.idcard .r{color:#d4e5f7;margin-bottom:14px}
+.idcard .qr{color:var(--ink);font-size:13px;background:#fff;border-radius:12px;padding:12px;display:inline-block}
+.idcard .qr img,.idcard .qr canvas{display:block}
+.idcard .no{font:700 13px 'Cairo';margin-top:10px;direction:ltr;letter-spacing:1px}
+.idcard .note{font-size:13px;color:#d4e5f7;margin-top:6px}
+.idactions{margin-top:12px;text-align:center}
+.lightbox img{width:100%;max-height:80vh;object-fit:contain;background:#000}
+
+/* ---------- التذييل ---------- */
+.foot{background:var(--ink);color:#c9d8ea;margin-top:0}
+.foot .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding:48px 0 32px}
+.foot h4{color:#fff;font-size:18px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot a{color:#c9d8ea}.foot a:hover{color:#fff}
+.soc{display:flex;flex-wrap:wrap;gap:8px}
+.soc a{border:1px solid rgba(255,255,255,.3);padding:.1em 1em;border-radius:99px;font-weight:700}
+.copy{border-top:1px solid rgba(255,255,255,.15);text-align:center;padding:16px 0;color:#fff;font-weight:700}
+
+/* ---------- لوحة التحكم ---------- */
+.adm{padding:30px 0 70px}
+.adm-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.adm-tabs button{font:700 16px 'Cairo';border:1.5px solid var(--line);background:#fff;padding:.4em 1.3em;border-radius:10px;cursor:pointer;color:var(--ink)}
+.adm-tabs button[aria-selected=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.row{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:10px;flex-wrap:wrap}
+.row img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.row .grow{flex:1;min-width:150px}
+.row .grow small{color:var(--muted);display:block}
+.f{display:grid;gap:14px}
+.f label{display:grid;gap:4px;font-weight:700;font-size:15px}
+.f input,.f select,.f textarea{font:inherit;padding:.55em .8em;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fff}
+.f textarea{min-height:100px;resize:vertical}
+.f .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.thumbs{display:flex;flex-wrap:wrap;gap:10px}
+.thumbs .t{width:110px;font-size:13px}
+.thumbs img{width:110px;height:80px;object-fit:cover;border-radius:8px}
+.thumbs input{padding:.2em .4em;font-size:13px}
+.login{max-width:380px;margin:80px auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px}
+.toast{position:fixed;bottom:22px;inset-inline:0;margin-inline:auto;width:max-content;max-width:90%;background:var(--ink);color:#fff;padding:.6em 1.4em;border-radius:99px;font-weight:700;z-index:99}
+.note-box{background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:16px}
+.note-box ol{margin:.4em 0 0;padding-inline-start:22px}
+
+/* ---------- الجوال ---------- */
+@media (max-width:860px){
+  .brand-school img{height:58px}
+  .brand-team span{font-size:16px}
+  .burger{display:block}
+  .nav ul{display:none;flex-direction:column;width:100%;padding-bottom:8px}
+  .nav ul.open{display:flex}
+  .navin{flex-wrap:wrap}
+  .slide{padding:28px 22px 56px}
+  .about,.profile,.foot .cols{grid-template-columns:1fr}
+  .p-head{flex-direction:column;text-align:center}
+  .idcard{position:static}
+  .arrow{display:none}
+  .f .two{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .brandrow{flex-direction:column;align-items:flex-start}
+  .mcard,.mcard.leader,.mcard.head,.mcard.deputy{width:100%;max-width:300px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+  body *{visibility:hidden}
+  #card,#card *{visibility:visible}
+  #card{position:absolute;top:0;left:0;width:340px}
+  .idcard{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
