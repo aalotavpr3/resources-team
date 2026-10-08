@@ -3,37 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="الموقع الرسمي لفريق مصادر التعلم المدرسية">
-<title>الرئيسية</title>
+<meta name="description" content="الموقع الرسمي لفريق مصادر التعلم المدرسية - تصميم استثنائي وعصري">
+<title>الرئيسية | فريق مصادر التعلم</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <div id="site-header"></div>
+
 <main>
+  <!-- قسم الهيرو والسلايدر المتطور -->
   <section class="hero" aria-label="أبرز المستجدات">
     <div class="zig"></div>
     <div class="wrap">
+      <div class="hero-top-badge">
+        <span class="pulse-dot"></span> منصة الإنجاز والتميز الرقمي
+      </div>
       <div class="tabs" id="tabs" role="tablist"></div>
       <div class="slider" id="slider" aria-roledescription="شرائح متحركة"></div>
     </div>
   </section>
 
+  <!-- قسم الأخبار والإنجازات -->
   <section class="sec wrap" id="news">
-    <h2 class="sec-title">الأخبار والإنجازات</h2>
+    <div class="section-header-flex">
+      <h2 class="sec-title">الأخبار والإنجازات الحصرية</h2>
+      <p class="sec-subtitle">تابع أحدث فعاليات وأنشطة الفريق الميدانية والرقمية</p>
+    </div>
     <div class="grid" id="newsGrid"></div>
   </section>
 
+  <!-- قسم من نحن بتصميم زجاجي فخم -->
   <section class="sec alt" id="about">
     <div class="wrap about">
-      <div>
-        <h2 class="sec-title">من نحن</h2>
+      <div class="about-content">
+        <span class="mini-badge">من نحن</span>
+        <h2 class="sec-title" style="border:none; padding:0; margin-bottom:16px;">رؤيتنا نحو مستقبل معرفي رقمي</h2>
         <p id="aboutText"></p>
-        <a class="btn" href="team.html">تعرّف على فريقنا</a>
+        <div class="about-actions">
+          <a class="btn glow-btn" href="team.html">
+            <span>تعرّف على أعضاء الفريق</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="logo-box"><img src="assets/team-logo.png" alt="شعار فريق مصادر التعلم"></div>
+      <div class="logo-box-glow">
+        <div class="logo-box">
+          <img src="assets/team-logo.png" alt="شعار فريق مصادر التعلم">
+        </div>
+      </div>
     </div>
   </section>
 </main>
+
 <div id="site-footer"></div>
 <dialog id="dlg"></dialog>
 
