@@ -24,10 +24,53 @@
     </div>
   </section>
 
+  <section class="service-strip wrap" aria-labelledby="services-title">
+    <div class="service-intro">
+      <span class="mini-badge">اكتشف الموقع</span>
+      <h2 id="services-title">كل ما يهمك، في مكان واحد</h2>
+      <p>استكشف أخبار الفريق، وابحث عن الفعاليات، وتعرّف على أعضائه.</p>
+    </div>
+    <div class="service-cards">
+      <a class="service-card" href="#eventFinder">
+        <span class="service-icon" aria-hidden="true">⌕</span>
+        <span class="service-copy"><b>ابحث عن فعالية</b><small>اعثر على الأخبار والصور المنشورة</small></span>
+        <span class="service-arrow" aria-hidden="true">←</span>
+      </a>
+      <button class="service-card" type="button" data-assistant-open>
+        <span class="service-icon" aria-hidden="true">✦</span>
+        <span class="service-copy"><b>المساعد المدرسي</b><small>إجابات من قاعدة المعرفة التجريبية</small></span>
+        <span class="service-arrow" aria-hidden="true">←</span>
+      </button>
+      <a class="service-card" href="team.html">
+        <span class="service-icon" aria-hidden="true">◎</span>
+        <span class="service-copy"><b>تعرّف على الفريق</b><small>الأعضاء وأدوارهم وإنجازاتهم</small></span>
+        <span class="service-arrow" aria-hidden="true">←</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec wrap event-finder" id="eventFinder" aria-labelledby="finder-title">
+    <div class="finder-head">
+      <div>
+        <span class="mini-badge">بحث سريع</span>
+        <h2 class="sec-title" id="finder-title">ابحث في أخبار الفريق</h2>
+        <p class="sec-subtitle">اكتب اسم عضو أو فعالية للعثور على المشاركات المنشورة.</p>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">ابحث باسم العضو أو الفعالية</span>
+        <span aria-hidden="true">⌕</span>
+        <input id="eventSearch" type="search" autocomplete="off" placeholder="مثال: معرض، أو اسم عضو" aria-controls="eventSearchResults">
+      </label>
+    </div>
+    <div class="search-results" id="eventSearchResults" aria-live="polite">
+      <p class="search-hint">ابدأ بالبحث لعرض النتائج من محتوى الموقع المنشور.</p>
+    </div>
+  </section>
+
   <!-- قسم الأخبار والإنجازات -->
   <section class="sec wrap" id="news">
     <div class="section-header-flex">
-      <h2 class="sec-title">الأخبار والإنجازات الحصرية</h2>
+      <h2 class="sec-title">الأخبار والإنجازات</h2>
       <p class="sec-subtitle">تابع أحدث فعاليات وأنشطة الفريق الميدانية والرقمية</p>
     </div>
     <div class="grid" id="newsGrid"></div>
@@ -61,6 +104,7 @@
 
 <script src="data.js"></script>
 <script src="js/common.js"></script>
+<script src="js/assistant.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>

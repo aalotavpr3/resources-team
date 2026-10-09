@@ -45,12 +45,51 @@ function login() {
 
 /* ---------- الهيكل ---------- */
 function shell() {
-  var T = [['members', 'الأعضاء'], ['news', 'الأخبار والإنجازات'], ['settings', 'إعدادات الموقع'], ['publish', 'النشر']];
+  var T = [['members', 'الأعضاء'], ['news', 'الأخبار والإنجازات'], ['knowledge', 'قاعدة معرفة AI (تجريبي)'], ['settings', 'إعدادات الموقع'], ['publish', 'النشر']];
   app.innerHTML = '<h1>لوحة التحكم</h1><div class="adm-tabs" role="tablist">' + T.map(function (t) {
     return '<button role="tab" data-t="' + t[0] + '" aria-selected="' + (t[0] === tab) + '">' + t[1] + '</button>';
   }).join('') + '</div><div id="view"></div>';
   $('.adm-tabs').onclick = function (e) { var b = e.target.closest('button'); if (b) { tab = b.dataset.t; shell(); } };
-  ({ members: viewMembers, news: viewNews, settings: viewSettings, publish: viewPublish })[tab]();
+  ({ members: viewMembers, news: viewNews, knowledge: viewKnowledge, settings: viewSettings, publish: viewPublish })[tab]();
+}
+
+/* ---------- قاعدة معرفة تجريبية (محلية على هذا الجهاز فقط) ---------- */
+function knowledgeItems() {
+  try {
+    var items = JSON.parse(localStorage.getItem('mrk_knowledge_demo'));
+    return Array.isArray(items) ? items : [];
+  } catch (e) { return []; }
+}
+function viewKnowledge() {
+  var items = knowledgeItems();
+  $('#view').innerHTML =
+    '<div class="note-box demo-warning"><b>وضع تجريبي فقط</b><p>الأسئلة والأجوبة تُحفظ في هذا المتصفح وحده، ولا تظهر للزوار الآخرين. هذه النسخة لا تتصل بنموذج ذكاء اصطناعي ولا تصلح لمعلومات الطلاب أو البيانات الخاصة.</p></div>' +
+    '<form class="f kb-form" id="kf"><label>السؤال<input id="k_question" maxlength="180" required placeholder="مثال: كيف أنضم إلى فريق مصادر التعلم؟"></label>' +
+    '<label>الإجابة<textarea id="k_answer" maxlength="1200" required placeholder="اكتب إجابة معتمدة وواضحة"></textarea></label>' +
+    '<div><button class="btn" type="submit">إضافة إلى قاعدة التجربة</button></div></form>' +
+    '<div class="kb-list" id="kbList">' + (items.length ? items.map(function (item, i) {
+      return '<article class="kb-item" data-i="' + i + '"><div><b>' + esc(item.question) + '</b><p>' + esc(item.answer) + '</p></div><button class="btn sm danger" type="button" data-remove="' + i + '" aria-label="حذف السؤال">حذف</button></article>';
+    }).join('') : '<p class="search-hint">لا توجد أسئلة بعد. أضف سؤالًا وإجابة لتجربتها في المساعد.</p>') + '</div>';
+  $('#kf').onsubmit = function (e) {
+    e.preventDefault();
+    var question = $('#k_question').value.trim(), answer = $('#k_answer').value.trim();
+    if (!question || !answer) return;
+    items.unshift({ id: uid('q'), question: question, answer: answer });
+    try {
+      localStorage.setItem('mrk_knowledge_demo', JSON.stringify(items));
+      toast('أُضيفت إلى قاعدة التجربة على هذا الجهاز');
+      viewKnowledge();
+    } catch (err) { toast('تعذّر الحفظ في مساحة المتصفح'); }
+  };
+  $('#kbList').onclick = function (e) {
+    var button = e.target.closest('[data-remove]');
+    if (!button) return;
+    items.splice(+button.dataset.remove, 1);
+    try {
+      localStorage.setItem('mrk_knowledge_demo', JSON.stringify(items));
+      viewKnowledge();
+    } catch (err) { toast('تعذّر تحديث قاعدة التجربة'); }
+  };
 }
 
 /* ---------- الأعضاء ---------- */
