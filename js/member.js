@@ -19,19 +19,18 @@ if (!m) {
     }).join('') + '</div>' : '<p style="color:var(--muted)">لم تتم إضافة صور بعد.</p>') +
     '<p style="margin-top:30px"><a class="btn ghost" href="team.html">← العودة لفريقنا</a></p></div>' +
     '<aside><div class="idcard" id="card">' +
-    '<div class="top"><span>بطاقة عضوية معتمدة</span><img src="assets/team-logo.png" alt=""></div>' +
+    '<div class="top"><span>بطاقة عضوية معتمدة</span><img src="assets/logo.jpg" alt=""></div>' +
     '<img class="ph" src="' + avatar(m) + '" alt=""><h3>' + esc(m.name) + '</h3><div class="r">' + esc(m.role) + '</div>' +
     '<div class="qr" id="qr"></div>' +
     '<div class="no">MRK-' + esc(m.id.toUpperCase()) + '</div>' +
     '<div class="note">امسح الرمز للتحقق من أصالة البطاقة</div></div>' +
-    '<div class="idactions"><button class="btn sm" id="printCard">طباعة البطاقة</button></div></aside></div>';
+    '</aside></div>';
 
   try {
     new QRCode(document.getElementById('qr'), { text: memberUrl(m.id), width: 140, height: 140, correctLevel: QRCode.CorrectLevel.M });
   } catch (e) {
     document.getElementById('qr').textContent = 'تعذّر تحميل مولّد QR (تحقق من الاتصال بالإنترنت).';
   }
-  document.getElementById('printCard').onclick = function () { window.print(); };
   if (location.hash === '#card') document.getElementById('card').scrollIntoView();
 
   main.addEventListener('click', function (e) {
