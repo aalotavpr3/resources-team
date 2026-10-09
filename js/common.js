@@ -63,7 +63,7 @@
         '<button class="burger" aria-expanded="false" aria-controls="menu">القائمة ☰</button>' +
         '<ul id="menu">' + links.map(function (l) {
           return '<li><a href="' + l[1] + '"' + (l[0] === active ? ' class="on" aria-current="page"' : '') + '>' + l[2] + '</a></li>';
-        }).join('') + '</ul></div></nav></header>';
+        }).join('') + '<li class="presence-li"><button type="button" class="presence-btn" id="presenceOpen" aria-haspopup="dialog"><span class="full">ابحث عن وجودك</span><span class="short">وجودك</span></button></li></ul></div></nav></header>';
       var b = h.querySelector('.burger'), m = h.querySelector('#menu');
       b.addEventListener('click', function () {
         var o = m.classList.toggle('open');
@@ -90,6 +90,12 @@
         (soc.length ? '<div class="soc">' + soc.join('') + '</div>' : '<p>ستظهر وسائل التواصل هنا بعد إضافتها من لوحة التحكم.</p>') +
         '</div></div>' +
         '<div class="copy">جميع الحقوق محفوظة لطاقم فريق مصادر التعلم</div></footer>';
+    }
+    // ميزة «ابحث عن وجودك» (تُحمَّل مرة واحدة)
+    if (!window.__pzLoaded) {
+      window.__pzLoaded = true;
+      var pl = document.createElement('link'); pl.rel = 'stylesheet'; pl.href = 'css/presence.css'; document.head.appendChild(pl);
+      var ps = document.createElement('script'); ps.src = 'js/presence.js'; ps.defer = true; document.body.appendChild(ps);
     }
     document.title = (document.title ? document.title + ' | ' : '') + s.teamName;
   };
