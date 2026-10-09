@@ -57,8 +57,7 @@
       h.innerHTML =
         '<header>' +
         '<div class="brandrow wrap">' +
-        '<a class="brand-school" href="index.html"><img src="assets/school-logo.jpg" alt="' + esc(s.schoolName) + ' —   "></a>' +
-        '<a class="brand-team" href="index.html"><img src="assets/team-logo.png" alt="شعار الفريق"><span>' + esc(s.teamName) + '<small>' + esc(s.schoolName) + '</small></span></a>' +
+        '<a class="brand-team" href="index.html"><img src="assets/logo.jpg" alt="شعار مركز مصادر التعلم"><span>' + esc(s.teamName) + '<small>' + esc(s.schoolName || 'مدرسة التعاون الثانوية للبنين') + '</small></span></a>' +
         '</div>' +
         '<nav class="nav" aria-label="القائمة الرئيسية"><div class="wrap navin">' +
         '<button class="burger" aria-expanded="false" aria-controls="menu">القائمة ☰</button>' +
