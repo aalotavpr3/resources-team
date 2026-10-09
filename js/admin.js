@@ -45,12 +45,12 @@ function login() {
 
 /* ---------- الهيكل ---------- */
 function shell() {
-  var T = [['members', 'الأعضاء'], ['news', 'الأخبار والإنجازات'], ['settings', 'إعدادات الموقع'], ['publish', 'النشر']];
+  var T = [['members', 'الأعضاء'], ['news', 'الأخبار والإنجازات'], ['settings', 'إعدادات الموقع'], ['faces', 'فهرس الوجوه'], ['publish', 'النشر']];
   app.innerHTML = '<h1>لوحة التحكم</h1><div class="adm-tabs" role="tablist">' + T.map(function (t) {
     return '<button role="tab" data-t="' + t[0] + '" aria-selected="' + (t[0] === tab) + '">' + t[1] + '</button>';
   }).join('') + '</div><div id="view"></div>';
   $('.adm-tabs').onclick = function (e) { var b = e.target.closest('button'); if (b) { tab = b.dataset.t; shell(); } };
-  ({ members: viewMembers, news: viewNews, settings: viewSettings, publish: viewPublish })[tab]();
+  ({ members: viewMembers, news: viewNews, settings: viewSettings, faces: viewFaces, publish: viewPublish })[tab]();
 }
 
 /* ---------- الأعضاء ---------- */
@@ -183,6 +183,32 @@ function viewPublish() {
   };
   $('#rst').onclick = function () { if (confirm('سيتم مسح التعديلات المحفوظة على هذا الجهاز والعودة لمحتوى data.js المنشور. متأكد؟')) { localStorage.removeItem('mrk_data'); location.reload(); } };
   $('#out').onclick = function () { sessionStorage.removeItem('mrk_admin'); login(); };
+}
+
+/* ---------- فهرس الوجوه (ميزة ابحث عن وجودك) ---------- */
+function viewFaces() {
+  var P = window.PresenceAI;
+  var st = P ? P.stats(D) : null;
+  var built = st && st.built ? new Date(st.built).toLocaleString('ar-BH') : 'لم يُبنَ بعد';
+  $('#view').innerHTML =
+    '<div class="note-box"><b>ما هو فهرس الوجوه؟</b><p style="margin:.3em 0 0">لتعمل ميزة «ابحث عن وجودك» بسرعة، يقرأ الذكاء الاصطناعي كل صور الموقع (الصور الشخصية، معارض الأعضاء، صور الأخبار) ويحفظ بصمة رقمية لكل وجه. لا تُحفظ صور جديدة، ولا يمكن إعادة بناء الوجه من البصمة.</p></div>' +
+    '<div class="note-box"><ol><li>اضغط «بناء الفهرس» وانتظر حتى ينتهي (يعمل على جهازك).</li><li>من تبويب «النشر» اضغط «تصدير data.js» وارفعه إلى GitHub.</li><li>أعد بناء الفهرس كلما أضفت أو غيّرت صوراً.</li></ol></div>' +
+    (st ? '<div class="note-box"><b>الحالة:</b><p style="margin:.3em 0 0">الصور في الموقع: <b>' + st.photos + '</b> — المفهرسة: <b>' + st.indexed + '</b> — الوجوه المكتشفة: <b>' + st.faces + '</b> — صور تحتاج تحديثاً: <b>' + st.stale + '</b><br>آخر بناء: ' + built + '</p></div>' : '<div class="note-box">جارٍ تحميل الميزة… أعد فتح هذا التبويب بعد ثوانٍ.</div>') +
+    '<p><button class="btn" id="fbuild">بناء / تحديث الفهرس</button> <button class="btn danger" id="fdel">حذف الفهرس</button></p>' +
+    '<div class="pz-status" id="fst"></div><div class="pz-bar"><i id="fbar"></i></div>';
+  $('#fdel').onclick = function () {
+    if (!D.faceIndex) return toast('لا يوجد فهرس');
+    if (confirm('حذف فهرس الوجوه؟ سيعمل البحث بالصورة بمسح مباشر أبطأ حتى تعيد بناءه.')) { delete D.faceIndex; save(); viewFaces(); }
+  };
+  $('#fbuild').onclick = function () {
+    if (!P) return toast('الميزة لم تُحمَّل بعد، حاول بعد ثوانٍ');
+    var btn = this; btn.disabled = true;
+    P.buildIndex(D, function (p) {
+      if (p.status) $('#fst').textContent = p.status;
+      if (p.n) { $('#fst').textContent = 'تحليل الصورة ' + p.i + ' من ' + p.n + ' — وجوه مكتشفة: ' + p.faces; $('#fbar').style.width = (p.i / p.n * 100) + '%'; }
+    }).then(function (ix) { D.faceIndex = ix; save(); viewFaces(); })
+      .catch(function (e) { toast(e.message || 'فشل بناء الفهرس'); btn.disabled = false; });
+  };
 }
 
 if (sessionStorage.getItem('mrk_admin')) shell(); else login();
