@@ -65,11 +65,16 @@
           return '<li><a href="' + l[1] + '"' + (l[0] === active ? ' class="on" aria-current="page"' : '') + '>' + l[2] + '</a></li>';
         }).join('') + '</ul></div></nav></header>';
       var b = h.querySelector('.burger'), m = h.querySelector('#menu');
+      function closeMenu() {
+        m.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      }
       b.addEventListener('click', function () {
         var o = m.classList.toggle('open');
-        b.setAttribute('aria-expanded', o);
+        b.setAttribute('aria-expanded', String(o));
       });
-      m.addEventListener('click', function (e) { if (e.target.tagName === 'A') m.classList.remove('open'); });
+      m.addEventListener('click', function (e) { if (e.target.closest('a')) closeMenu(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
     }
 
     var f = document.getElementById('site-footer');
