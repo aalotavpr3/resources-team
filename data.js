@@ -1,15 +1,15 @@
 window.SITE_DEFAULT = {
- "updated": 1791707893057,
+ "updated": 1791708243142,
  "settings": {
   "teamName": "اعداد وتصميم : جيدي وجداك",
   "siteUrl": "",
   "adminPassword": "1234",
   "about": "فريق طلابي يُعنى بتفعيل مصادر التعلم في المدرسة، وتوثيق الأنشطة والإنجازات، ودعم المعلمين والطلبة في الوصول إلى المعرفة بأحدث الوسائل.",
   "email": "",
-  "whatsapp": "",س
+  "whatsapp": "",
   "instagram": "",
   "x": "",
-  "tiktok": ""س
+  "tiktok": ""
  },
  "news": [
   {
